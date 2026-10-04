@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+
+char firstNonRepeatingChar(const char *s) {
+    int count[256] = {0};
+    int length = strlen(s);
+
+    for (int i = 0; i < length; i++) {
+        count[(unsigned char)s[i]]++;
+    }
+
+    for (int i = 0; i < length; i++) {
+        if (count[(unsigned char)s[i]] == 1) {
+            return s[i];
+        }
+    }
+
+    return '\0';
+}
+
+int main() {
+    char str1[] = "swiss";
+    char res1 = firstNonRepeatingChar(str1);
+    if (res1 != '\0') {
+        printf("Input: \"swiss\" -> Output: '%c'\n", res1);
+    } else {
+        printf("Input: \"swiss\" -> Output: -1\n");
+    }
+
+    char str2[] = "aabbcc";
+    char res2 = firstNonRepeatingChar(str2);
+    if (res2 != '\0') {
+        printf("Input: \"aabbcc\" -> Output: '%c'\n", res2);
+    } else {
+        printf("Input: \"aabbcc\" -> Output: -1\n");
+    }
+
+    return 0;
+}
